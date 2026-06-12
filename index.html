@@ -2589,5 +2589,49 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   }
 </script>
+  <script>
+let adminClicks = 0;
+let adminTimer;
+
+document.addEventListener("click", function(e){
+
+    const texto = (e.target.innerText || "").toUpperCase();
+    const alt = (e.target.alt || "").toUpperCase();
+
+    if(
+        texto.includes("SOLEM") ||
+        alt.includes("SOLEM")
+    ){
+
+        adminClicks++;
+
+        clearTimeout(adminTimer);
+
+        adminTimer = setTimeout(()=>{
+            adminClicks = 0;
+        },1500);
+
+        if(adminClicks === 3){
+
+            const usuario = prompt("Usuario ERP:");
+
+            const clave = prompt("Contraseña:");
+
+            if(
+                usuario === "admin" &&
+                clave === "solem2025"
+            ){
+                window.location.href =
+                "https://kiararubi0308-oss.github.io/erp_solem/";
+            }else{
+                alert("Acceso denegado");
+            }
+
+            adminClicks = 0;
+        }
+    }
+
+});
+</script>
 </body>
 </html>
